@@ -5,21 +5,24 @@
 
 //------------------------------------------------------------------------------
 
-//PACOTE.
-package calc;
+//PACOTE
+package programa;
 
 import java.util.Scanner;    
 
 //CLASSE PRINCIPAL.
-public class AE1VersaoFinal {    
+public class Calculadora {    
     
     //MÉTODO PRINCIPAL.
     public static void main (String args[]){   
         
         //DECLARAÇÃO DAS VARIÁVEIS.
         short operacao;
-        double num1 = 0, num2 = 0;    
-        Scanner input = new Scanner(System.in);
+        double num1 = 0;
+        double num2 = 0;
+        
+        //Criando um objeto da CLASSE SCANNER
+        Scanner entrada = new Scanner(System.in);
         
         //ESTRUTURA DE REPETIÇÃO.
         do {
@@ -32,10 +35,10 @@ public class AE1VersaoFinal {
             System.out.println("[5] - ELEVAR AO QUADRADO");
             System.out.println("[0] - SAIR DA CALCULADORA\n");
             System.out.print("OPÇÃO: ");
-            operacao = input.nextShort();
+            operacao = entrada.nextShort();
              
             if (operacao == 0) {
-            	System.out.println("PROGRAMA ENCERRADO ...");
+            	System.out.println("PROGRAMA ENCERRADO!");
             	break;
             }             
             if (!OperacaoExiste(operacao)) {
@@ -44,13 +47,13 @@ public class AE1VersaoFinal {
             //------------------------------------------------------------------
             if (operacao == 1 || operacao == 2 || operacao == 3 || operacao == 4){
                 System.out.println("DIGITE O PRIMEIRO NÚMERO: ");
-                num1 = input.nextDouble();  
+                num1 = entrada.nextDouble();  
                 System.out.println("DIGITE O SEGUNDO NÚMERO: ");  
-                num2 = input.nextDouble();
+                num2 = entrada.nextDouble();
             }else if(operacao == 5) {
                 System.out.println("DIGITE UM NÚMERO PARA SER ELEVADO AO QUADRADO: ");  
-                num1 = input.nextDouble();
-            }else
+                num1 = entrada.nextDouble();
+            }else 
             //------------------------------------------------------------------ 
                         
             if (!ValidaDadosDeEntrada(operacao, num1, num2)) {
@@ -94,6 +97,10 @@ public class AE1VersaoFinal {
        		System.out.println("ERRO: OPÇÃO INVÁLIDA! TENTE NOVAMENTE ...\n\n\n");
        		retorno = false;
        	}
+        if (operacao < 0) {
+       		System.out.println("ERRO: OPÇÃO INVÁLIDA! TENTE NOVAMENTE ...\n\n\n");
+       		retorno = false;
+       	}
     	return retorno;
     }
     
@@ -121,7 +128,7 @@ public class AE1VersaoFinal {
                 case 5: 
 			return "QUADRADO";
     	default:
-    		return "undefined";
+    		return "OPERAÇÃO NÃO EXISTE!";
     	}
     	
     }
